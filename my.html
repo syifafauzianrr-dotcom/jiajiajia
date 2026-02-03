@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Mail-Ceillings</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(180deg,#e8f4ff,#f5fbff);
+  font-family:'Playfair Display',serif;
+  overflow:hidden;
+}
+
+/* page */
+.page{display:none;text-align:center;animation:fade .8s ease}
+.page.active{display:block}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:none}
+}
+
+h1{color:#3a6ea5;margin-bottom:10px}
+p{color:#5d7fa3;margin-bottom:20px}
+
+.btn{
+  padding:10px 26px;
+  background:#6ec1ff;
+  color:#fff;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  margin:6px;
+}
+.btn:hover{background:#5ab5ff}
+
+/* envelope */
+.envelope{
+  width:320px;height:200px;
+  background:#6ec1ff;
+  position:relative;
+  margin:auto;
+  cursor:pointer;
+  border-radius:8px;
+}
+.flap{
+  position:absolute;
+  width:100%;height:100%;
+  background:#8fd3ff;
+  clip-path:polygon(0 0,100% 0,50% 55%);
+  transform-origin:top;
+  transition:.8s;
+}
+.letter{
+  position:absolute;
+  width:92%;
+  max-height:130px;        /* jangan pakai height */
+  background:#fff;
+  bottom:10px;
+  left:4%;
+  padding:15px;
+  border-radius:8px;
+  transform:translateY(60px);
+  opacity:0;
+  transition:.9s;
+
+  overflow-y:auto;        /* scroll aktif */
+  -webkit-overflow-scrolling:touch; /* HP */
+}
+
+}
+.envelope.open .flap{transform:rotateX(180deg)}
+.envelope.open .letter{transform:translateY(-40px);opacity:1}
+
+/* card */
+.card{
+  background:#fff;
+  padding:30px;
+  border-radius:16px;
+  width:340px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+/* SLIDER PAGE 3 */
+.slider{
+  width:220px;
+  overflow:hidden;
+  margin:15px auto;
+}
+.slides{
+  display:flex;
+  transition:transform .8s ease;
+}
+.slides img{
+  width:220px;
+  border-radius:14px;
+  flex-shrink:0;
+}
+
+/* gallery */
+.gallery{display:flex;gap:10px;justify-content:center}
+.gallery img{
+  width:90px;height:90px;
+  object-fit:cover;border-radius:12px;
+}
+
+/* falling hearts */
+.heart{
+  position:fixed;
+  top:-20px;
+  font-size:16px;
+  animation:fall linear forwards;
+  opacity:.7;
+}
+@keyframes fall{
+  to{transform:translateY(110vh);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="loveu.flac" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <h1>Love Mail-Ceillings</h1>
+  <p>click the envelope to open 💌</p>
+  <div class="envelope" onclick="openMail()">
+    <div class="flap"></div>
+    <div class="letter">
+      <h3>My bebe, Fatier.</h3>
+      <p>
+        Every laugh, every silence, every moment we share together, I cherish them all.
+        Aku tak pernah membayangkan akan merasakan hal ini saat ini, aku yang awalnya mengagumi seseorang sehebat dirimu, akhirnya bisa mencintaimu sepenuhnya, sebanyak yang telah kulakukan selama ini. 
+        Aku tak bisa menggambarkan betapa bahagianya aku, karena diriku diterima, karena diriku dicintai, meskipun aku memiliki beberapa keterbatasan yang tidak sebebas orang lain, meskipun aku memiliki banyak kekurangan yang perlu diperbaiki,
+         terima kasih telah bertahan sejauh ini, terima kasih atas perubahan hidupmu yang luar biasa! Kamu telah berusaha sebaik mungkin, dan aku bangga dengan prosesmu, aku bangga menjadi orang yang menemani prosesmu, aku harap aku tetap yg menemanimu juga mencapai garis finish. 
+         Sekalipun terlalu cepat atau terlalu singkat, aku ingin merayakannya, setidaknya kamu akan selalu mengingatnya suatu hari nanti, bahwa ada seseorang yang sangat mencintaimu, bahwa ada seseorang yang takut kehilanganmu, bahwa ada seseorang yang ingin lebih bahagia bersamamu, 
+         tolong ceritakan apa pun tentang dirimu, bagikan semua yang kamu bisa. Kamu tidak punya batasan untuk berbagi apa pun denganku, perasaanmu, usahamu, semua yang ingin kamu sampaikan, terima kasih, aku sangat menghargainya, aku harap kamu masih mencintaiku, aku sangat mencintaimu. 
+         Aku harap kamu juga selalu mencintaiku tanpa memudar, karena hal yang paling aku takuti adalah kehilanganmu. Kehilangan cintamu. Maafkan aku jika aku terlalu berlebihan, terlalu menuntut, atau terlalu posesif, terimakasih sudah sabar menghadapi aku. semoga aku bisa menjadi wanita yg lebih baik untukmu setiap harinya, setiap waktunya
+        Terima kasih atas semua cinta yang kamu berikan, jangan pernah lelah menjadi pria baik dan luar biasa bagiku! 💗<br><p>WITH LOVE, fauzia.</p></br>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <div class="card">
+    <h1>Eh Jangan Baca Dulu, Dengerin lagunya dulu yaa</h1>
+    <br>
+    <p>The only exception - Paramore</p>
+    <br>
+    <p>
+      hei pacarku, haloo yg baca ini. ini adalah letter yang aku tulis
+      buat kesayangan aku, hehe. siapa si namanya? ya tau la.
+    </p>
+    <br>
+    <p><b>Muhammad Dhaffa AlFatier</b></p>
+    <button class="btn" onclick="next(3)">Next</button>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <div class="card">
+    <h1>Why I Love You this far</h1>
+    <p>Soft as the sky, gentle as you.</p>
+
+    <div class="slider">
+      <div class="slides">
+        <img src="syifa6.jpeg">
+        <img src="syifa5.jpeg">
+        <img src="syifa4.jpeg">
+        <img src="syifa3.jpeg">
+        <img src="syifa2.jpeg">
+        <img src="syifa1.jpeg">
+      </div>
+    </div>
+
+    <button class="btn" onclick="next(4)">Next</button>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <div class="card">
+    <h1>Do You Love Me Too?</h1>
+    <button class="btn" onclick="next(5)">YES</button>
+    <button class="btn" onclick="noEffect()">NO 🙄</button>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+  <div class="card">
+    <h1>Favorite Pictures</h1>
+    <p>Moments I never want to forget.</p>
+    <div class="gallery">
+      <img src="zia1.jpeg">
+      <img src="zia2.jpeg">
+      <img src="zia3.jpeg">
+      <img src="zia4.jpeg">
+    </div>
+    <h4>ini momen yg paling aku sukakk walau udh lama bgt kita kenal, foto pertama pas aku lihat kamu dengan hobi kamu hehehe, kaya "sesuka apa sih fatier?" sampe ke "ihh gila, keren banget." terus foto kedua, dibogor i love this soo bad! dimana rasa takut campur aduk wkwk, itu tenaga terakhir aku untuk mengeluarkan apa yg aku rasa sebenar benarnya ternyata itu tenaga terakhir yg menghidupkan energy aku yg baru. terus foto ketiga, foto pertama bgt yg bnr alias bnr berdua wkwk iyagaasi, suka aja. sm foto terakhir paling gabisa aku lupain sedunia pas diacara keluarga kamu dan nenek kamu ajak bicara aku, i love all so-much. </h4>
+    <br>
+    <button class="btn" onclick="next(1)">Home! untukk baca letternya</button>
+  </div>
+</div>
+
+<script>
+function next(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page'+n).classList.add('active');
+}
+
+/* SLIDER AUTO */
+let index = 0;
+setInterval(()=>{
+  const slides = document.querySelector('.slides');
+  if(!slides) return;
+
+  const total = slides.children.length;
+  index = (index + 1) % total;
+  slides.style.transform = `translateX(-${index * 100}%)`;
+},3000);
+
+/* envelope + music */
+function openMail(){
+  document.querySelector('.envelope').classList.add('open');
+
+  const music = document.getElementById("bgMusic");
+  music.volume = 0;
+  music.play();
+
+  let v = 0;
+  let fade = setInterval(()=>{
+    if(v < 0.8){
+      v += 0.02;
+      music.volume = v;
+    } else clearInterval(fade);
+  },200);
+
+  setInterval(()=>{
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "💙";
+    h.style.left = Math.random()*100 + "vw";
+    h.style.animationDuration = (3 + Math.random()*3) + "s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },400);
+
+  setTimeout(()=>next(2),1200);
+}
+
+function noEffect(){
+  const msg = document.createElement("div");
+  msg.innerText = "NO diterima… tapi kecewa banget si ak, Serius luhk?!!.";
+  msg.style.position = "fixed";
+  msg.style.top = "50%";
+  msg.style.left = "50%";
+  msg.style.transform = "translate(-50%,-50%) scale(.8)";
+  msg.style.background = "#fff";
+  msg.style.padding = "20px 28px";
+  msg.style.borderRadius = "20px";
+  msg.style.color = "#3a6ea5";
+  msg.style.fontSize = "18px";
+  msg.style.boxShadow = "0 10px 30px rgba(0,0,0,.15)";
+  msg.style.opacity = "0";
+  msg.style.transition = ".5s";
+  document.body.appendChild(msg);
+
+  setTimeout(()=>{
+    msg.style.opacity="1";
+    msg.style.transform="translate(-50%,-50%) scale(1)";
+  },50);
+
+  setTimeout(()=>{
+    msg.style.opacity="0";
+    msg.style.transform="translate(-50%,-50%) scale(.8)";
+    setTimeout(()=>msg.remove(),500);
+  },2500);
+}
+</script>
+
+</body>
+</html>
